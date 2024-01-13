@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 
 @Value
 public class SampleDTO {
-
     String content;
     LocalDateTime timestamp;
 }
