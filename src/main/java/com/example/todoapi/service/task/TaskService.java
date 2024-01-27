@@ -14,4 +14,8 @@ public class TaskService {
                 .map(record -> new TaskEntity(record.getId(), record.getTitle()))
                 .orElseThrow(() -> new TaskEntityNotFoundException(taskId));
     }
+
+    public TaskEntity create(String title) {
+        return new TaskEntity(99L, title);
+    }
 }
