@@ -23,6 +23,12 @@ paths:
       operationId: "createTask"
       tags:
         - tasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TaskForm"
       responses:
         201:
           description: "Created"
@@ -61,6 +67,14 @@ paths:
 
 components:
   schemas:
+    TaskForm:
+      type: object
+      properties:
+        title:
+          type: string
+          description: "作成されるタスクのタイトル"
+      required:
+        - title
     TaskDTO:
       type: object
       properties:
