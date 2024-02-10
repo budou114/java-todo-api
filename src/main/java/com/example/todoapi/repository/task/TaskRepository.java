@@ -18,6 +18,6 @@ public interface TaskRepository {
     @Insert("INSERT INTO tasks (title) VALUES (#{title})")
     void insert(TaskRecord record);
 
-    @Select("SELECT id, title FROM tasks")
-    List<TaskRecord> selectList();
+    @Select("SELECT id, title FROM tasks LIMIT #{limit} OFFSET #{offset}")
+    List<TaskRecord> selectList(int limit, long offset);
 }

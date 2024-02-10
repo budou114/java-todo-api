@@ -40,8 +40,8 @@ public class TaskController implements TasksApi {
     }
 
     @Override
-    public ResponseEntity<TaskListDTO> listTasks() {
-        var entityList = taskService.find();
+    public ResponseEntity<TaskListDTO> listTasks(Integer limit, Long offset) {
+        var entityList = taskService.find(limit, offset);
         var dtoList = entityList.stream()
                 .map(TaskController::toTaskDTO)
                 .collect(Collectors.toList());
