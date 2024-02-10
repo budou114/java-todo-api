@@ -1,7 +1,7 @@
 package com.example.todoapi.controller.advice;
 
-import com.example.todoapi.model.BadRequestError;
 import com.example.todoapi.model.ResourceNotFoundError;
+import com.example.todoapi.controller.advice.BadRequestErrorCreator;
 import com.example.todoapi.service.task.TaskEntityNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -32,7 +32,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
             HttpStatusCode status,
             WebRequest request
     ) {
-        return ResponseEntity.badRequest().body(new BadRequestError());
+        var error = BadRequestErrorCreator.from(ex);
+        return ResponseEntity.badRequest().body(error);
     }
 
 }
