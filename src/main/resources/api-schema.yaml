@@ -5,7 +5,7 @@ info:
   description: TODO API のドキュメントです
 tags:
   - name: opts
-    description: 運用監視系関連のAPI
+    description: 運用監視関連のAPI
   - name: tasks
     description: タスク関連のAPI
 paths:
@@ -34,7 +34,7 @@ paths:
           description: "Created"
           headers:
             location:
-              description: "作成されたリソースのURL"
+              description: "作成されたリソースのURI"
               schema:
                 type: string
           content:
@@ -47,11 +47,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/BadRequestError"
-
   /tasks/{taskId}:
     get:
       summary: "タスク取得"
-      description: "指定されたID1のタスクを1件取得します"
+      description: "指定されたIDのタスクを1件取得します"
       tags:
         - tasks
       operationId: showTask
@@ -76,7 +75,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ResourceNotFoundError"
-
 components:
   schemas:
     TaskForm:
@@ -86,7 +84,7 @@ components:
           type: string
           description: "作成されるタスクのタイトル"
       required:
-        - titlevv
+        - title
     TaskDTO:
       type: object
       properties:
@@ -133,7 +131,7 @@ components:
       required:
         - title
         - detail
-        - invalid-param
+        - invalid-params
     InvalidParam:
       description: "不正なリクエストについての詳細"
       type: object
