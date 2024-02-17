@@ -1,6 +1,7 @@
 package com.example.todoapi.controller.task;
 
 import com.example.todoapi.controller.TasksApi;
+import com.example.todoapi.model.PageDTO;
 import com.example.todoapi.model.TaskDTO;
 import com.example.todoapi.model.TaskForm;
 import com.example.todoapi.model.TaskListDTO;
@@ -46,7 +47,13 @@ public class TaskController implements TasksApi {
                 .map(TaskController::toTaskDTO)
                 .collect(Collectors.toList());
 
+        var pageDto = new PageDTO();
+        pageDto.setLimit(limit);
+        pageDto.setOffset(offset);
+        pageDto.setSize(dtoList.size());
+
         var dto = new TaskListDTO();
+        dto.setPage(pageDto);
         dto.setResults(dtoList);
         return ResponseEntity.ok(dto);
     }
