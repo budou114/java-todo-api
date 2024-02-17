@@ -38,4 +38,10 @@ public class TaskService {
         taskRepository.update(new TaskRecord(taskId, title));
         return find(taskId);
     }
+
+    public void delete(Long taskId) {
+        taskRepository.select(taskId)
+                .orElseThrow(() -> new TaskEntityNotFoundException(taskId));
+        taskRepository.delete(taskId);
+    }
 }
